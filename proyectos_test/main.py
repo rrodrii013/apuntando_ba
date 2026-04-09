@@ -200,9 +200,11 @@ elif seleccion_de_calculo.lower() == 'orientacion':
     mi_dv = calculo_dv.dv_(coordenadas_x_pv,coordenadas_x_cb, coordenadas_y_pv, coordenadas_y_cb)
     mi_dd = calculo_dd.mi_dd(ano, ano_carta, dias_hoy, var_anual, angulo_declinacion)
     print(mi_dd, type(mi_dd))
-    mi_orientacion = ang_vigilancia_or_o(mi_dd, mi_dv)
-    print(f'La DD es: {calculo_dd.mi_dd.final_dd}') 
-    print(f'La DV es: {mi_dv}') 
+    resultado_dd = mi_dd.resultado_dd
+    resultado_dv = mi_dv.mi_dv
+    mi_orientacion = ang_vigilancia_or_o(resultado_dd, resultado_dv)
+    print(f'La DD es: {resultado_dd}') 
+    print(f'La DV es: {mi_dresultado_dv}') 
     print(f'La Orientación es: {mi_orientacion}') 
 else:
     print("Por favor, verifica haber escrito correctamente el metodo por el cual deseas apuntar.")

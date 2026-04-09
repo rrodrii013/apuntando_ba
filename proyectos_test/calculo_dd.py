@@ -1,32 +1,32 @@
 
 # aca debo abrir una funcion: si el user decide calcular por dd ejecutamos la funcion en main.py
 #from main import ano_carta, ano, var_anual, dias_hoy, angulo_declinacion
-import main 
-
 #ano, ano_carta, dias_hoy, var_anual, angulo_declinacion
 
 def mi_dd(a, b, c, d, e):
-#Datos calculados segun datos brindados por el user
+    #Datos calculados segun datos brindados por el user
     ano_hoy = int(a - b)
     dias_hoy_prom = float(c / 365)
 
 
-#sumamos diferencia de años + días del año en prom.
+    #sumamos diferencia de años + días del año en prom.
     total_hoy = float(ano_hoy + dias_hoy_prom)
-#multiplicacion de var anual y total_hoy
+    #multiplicacion de var anual y total_hoy
     vara_totalhoy = float(d * total_hoy)
-#sumamos angulo declinacion y anterior
+    #sumamos angulo declinacion y anterior
     ad_vara = float(vara_totalhoy + e)
-#restamos 400 (6400m en grados) al valor de ad_vara
+    #restamos 400 (6400m en grados) al valor de ad_vara
     vuelta_ad_totalhoy = float(400 - ad_vara)
 
 
-#aplicamos la regla de 3 
+    #aplicamos la regla de 3 
     mult_regla_tres = float(6400 * vuelta_ad_totalhoy)
     div_regla_tres = float(mult_regla_tres / 400)
 
-#resultado dd redondeada hacia arriba
-    final_dd = round(div_regla_tres)
+    #resultado dd redondeada hacia arriba
+    resultado_dd = round(div_regla_tres)
+    return resultado_dd
+
 
 
 #Parte donde el usuario podrá ver los resultados de los calculos para más transparencia y saber de donde salieron los números
