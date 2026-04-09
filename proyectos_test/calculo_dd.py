@@ -3,18 +3,20 @@
 #from main import ano_carta, ano, var_anual, dias_hoy, angulo_declinacion
 import main 
 
-def mi_dd():
+#ano, ano_carta, dias_hoy, var_anual, angulo_declinacion
+
+def mi_dd(a, b, c, d, e):
 #Datos calculados segun datos brindados por el user
-    ano_hoy = int(main.ano - main.ano_carta)
-    dias_hoy_prom = float(main.dias_hoy / 365)
+    ano_hoy = int(a - b)
+    dias_hoy_prom = float(c / 365)
 
 
 #sumamos diferencia de años + días del año en prom.
     total_hoy = float(ano_hoy + dias_hoy_prom)
 #multiplicacion de var anual y total_hoy
-    vara_totalhoy = float(main.var_anual * total_hoy)
+    vara_totalhoy = float(d * total_hoy)
 #sumamos angulo declinacion y anterior
-    ad_vara = float(vara_totalhoy + main.angulo_declinacion)
+    ad_vara = float(vara_totalhoy + e)
 #restamos 400 (6400m en grados) al valor de ad_vara
     vuelta_ad_totalhoy = float(400 - ad_vara)
 

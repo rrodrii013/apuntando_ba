@@ -17,7 +17,7 @@ def cuadrantes(x, y, dv):
 
 
 #Calculo AV
-def ang_vigilancia(valor_dr, valor_dv):
+def ang_vigilancia_or_o(valor_dr, valor_dv):
     av = valor_dr - valor_dv
     if av < 1:
         av += 6400
