@@ -1,6 +1,5 @@
 
-# aca debo abrir una funcion: si el user decide calcular por dd ejecutamos la funcion en main.py
-#from main import ano_carta, ano, var_anual, dias_hoy, angulo_declinacion
+# aca debo abrir una funcion: si el user decide calcular por dd, ejecutamos la funcion en main.py
 #ano, ano_carta, dias_hoy, var_anual, angulo_declinacion
 
 def mi_dd(a, b, c, d, e):

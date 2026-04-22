@@ -22,6 +22,5 @@ def dv_(a, b, c, d):
     #Ejecutamos function cuadrantes() para afectarle el mismo
     dv_milesimas = functions.cuadrantes(absoluto_x, absoluto_y, dv_milesimas)
 
-    print("dv:", dv_milesimas)
-    mi_dv = dv_milesimas
-    return mi_dv
+    mi_dv_final = dv_milesimas
+    return mi_dv_final
