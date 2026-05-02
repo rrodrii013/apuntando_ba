@@ -1,5 +1,5 @@
 import math
-import functions
+from . import functions
 milesimas = 0.05625
 
 

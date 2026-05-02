@@ -1,8 +1,8 @@
-import calculo_dd
-import calculo_dv
-import calculo_o_dr
-from functions import ang_vigilancia_or_o
-from functions import calculo_distancia
+import logic.calculo_dd as calculo_dd
+import logic.calculo_dv as calculo_dv
+import logic.calculo_o_dr as calculo_o_dr
+from logic.functions import ang_vigilancia_or_o 
+from logic.functions import calculo_distancia 
 
 
 #User selecciona el metodo de punteria deseado

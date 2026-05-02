@@ -23,8 +23,9 @@ def mi_dd(a, b, c, d, e):
     div_regla_tres = float(mult_regla_tres / 400)
 
     #resultado dd redondeada hacia arriba
-    resultado_dd = round(div_regla_tres)
-    return resultado_dd
+    mi_dd_final = round(div_regla_tres)
+
+    return mi_dd_final
 
 
 
