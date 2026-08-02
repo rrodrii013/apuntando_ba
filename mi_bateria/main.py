@@ -1,4 +1,6 @@
 import streamlit as st
+
+# Importaciones de tu lógica 
 import logic.calculo_dd as calculo_dd
 import logic.calculo_dv as calculo_dv
 import logic.calculo_o_dr as calculo_o_dr
@@ -6,203 +8,95 @@ from logic.functions import ang_vigilancia_or_o
 from logic.functions import calculo_distancia 
 
 st.title('Apuntando tu Batería 💣')
-#User selecciona el metodo de punteria deseado
-seleccion_de_calculo = input(f'Escribe por que metodo deseas apuntar:\n"Angulo de vigilancia"\n"Orientacion"\n')
-if seleccion_de_calculo.lower() == 'angulo de vigilancia':
-    #Coordenadas X PV
-    while True:
-        try:
-            coordenadas_x_pv_str = input("Ingresa las coordenadas de X en PV:")
-            if len(coordenadas_x_pv_str) != 6:
-                print("Dato no valido. Recuerda que las coordenadas deben ser números y tener 6 digitos.")
-            else:
-                coordenadas_x_pv = int(coordenadas_x_pv_str)
-                print("Dato guardado.")
-                break
-        except ValueError:
-            print("Por favor, ingresa un valor valido.")
 
-    #Coordenadas Y PV        
-    while True:
-        try:
-            coordenadas_y_pv_str = input("Ingresa las coordenadas de Y en PV:")
-            if len(coordenadas_y_pv_str) != 6:
-                print("Dato no valido. Recuerda que las coordenadas deben ser números y tener 6 digitos.")
-            else:
-                coordenadas_y_pv = int(coordenadas_y_pv_str)
-                print("Dato guardado.")
-                break
-        except ValueError:
-            print("Por favor, ingresa un valor valido.")
+# user selecciona el método de puntería deseado
+seleccion_de_calculo = st.selectbox(
+    "Selecciona el método por el que deseas apuntar:",
+    ['Ángulo de vigilancia', 'Orientación']
+)
 
-    #coordenadas X CB 
-    while True:
-        try:
-            coordenadas_x_cb_str = input("Ingresa las coordenadas de X en CB:")
-            if len(coordenadas_x_cb_str) != 6:
-                print("Dato no valido. Recuerda que las coordenadas deben ser números y tener 6 digitos.")
-            else:
-                coordenadas_x_cb = int(coordenadas_x_cb_str)
-                print("Dato guardado.")
-                break
-        except ValueError:
-            print("Por favor, ingresa un valor valido.")
-    #coordenadas Y CB 
-    while True:
-        try:
-            coordenadas_y_cb_str = input("Ingresa las coordenadas de Y en CB:")
-            if len(coordenadas_y_cb_str) != 6:
-                print("Dato no valido. Recuerda que las coordenadas deben ser números y tener 6 digitos.")
-            else:
-                coordenadas_y_cb = int(coordenadas_y_cb_str)
-                print("Dato guardado.")
-                break
-        except ValueError:
-            print("Por favor, ingresa un valor valido.")
-               
-                #Coordenadas X DR
-    while True:
-        try:
-            coordenadas_x_dr_str = input("Ingresa las coordenadas de X en DR:")
-            if len(coordenadas_x_dr_str) != 6:
-                print("Dato no valido. Recuerda que las coordenadas deben ser números y tener 6 digitos.")
-            else:
-                coordenadas_x_dr = int(coordenadas_x_dr_str)
-                print("Dato guardado.")
-            break
-        except ValueError:
-            print("Por favor, ingresa un valor valido.")
+st.write("---")
 
-        #Coordenadas Y DR       
-    while True:
-        try:
-            coordenadas_y_dr_str = input("Ingresa las coordenadas de Y en DR:")
-            if len(coordenadas_y_dr_str) != 6:
-                print("Dato no valido. Recuerda que las coordenadas deben ser números y tener 6 digitos.")
-            else:
-                coordenadas_y_dr = int(coordenadas_y_dr_str)
-                print("Dato guardado.")
-            break
-        except ValueError:
-            print("Por favor, ingresa un valor valido.")
+# ---------------------------------------------------------
+# OPCIÓN 1: ÁNGULO DE VIGILANCIA
+# ---------------------------------------------------------
+if seleccion_de_calculo == 'Ángulo de vigilancia':
     
-    #importamos funcion de calculo ODV y ODR
-    mi_dv = calculo_dv.dv_(coordenadas_x_pv,coordenadas_x_cb, coordenadas_y_pv, coordenadas_y_cb)
-    mi_dr = calculo_o_dr.dr_(coordenadas_x_dr, coordenadas_x_cb, coordenadas_y_dr, coordenadas_y_cb)
-
-    #resultado final AV y Distancia
-    mi_av = ang_vigilancia_or_o(mi_dr, mi_dv)
-    print(f'El angulo de vigilancia es: {round(mi_av)}')
-    mi_distancia = calculo_distancia(coordenadas_x_pv, coordenadas_x_cb, coordenadas_y_pv, coordenadas_y_cb)
-    print(f'La distancia es: {round(mi_distancia)}')
-
-
-elif seleccion_de_calculo.lower() == 'orientacion':
-    while True:
-        try:
-            ano_carta = int(input("Ingresa el año de creación de la carta:"))
-            break
-        except ValueError:
-            print("Por favor, ingresa un valor valido.")
+   #F O R M
+    with st.form("form_angulo"):
+        st.subheader("Ingreso de Coordenadas")
+        st.info("Todas las coordenadas deben contener 6 dígitos.")
+        
+        # format="%d" para que el número se vea como entero y sin comas
+        coordenadas_x_pv = st.number_input("Coordenadas de X en PV:", step=1, format="%d", value=0)
+        coordenadas_y_pv = st.number_input("Coordenadas de Y en PV:", step=1, format="%d", value=0)
+        coordenadas_x_cb = st.number_input("Coordenadas de X en CB:", step=1, format="%d", value=0)
+        coordenadas_y_cb = st.number_input("Coordenadas de Y en CB:", step=1, format="%d", value=0)
+        coordenadas_x_dr = st.number_input("Coordenadas de X en DR:", step=1, format="%d", value=0)
+        coordenadas_y_dr = st.number_input("Coordenadas de Y en DR:", step=1, format="%d", value=0)
+        
+        # Btn para enviar el formulario
+        submit_btn = st.form_submit_button("Enviar datos")
+        
+    # Lógica de validación y cálculo 
+    if submit_btn:
+        # Agrupamos los datos en una lista para revisarlos rápidamente
+        datos = [coordenadas_x_pv, coordenadas_y_pv, coordenadas_x_cb, coordenadas_y_cb, coordenadas_x_dr, coordenadas_y_dr]
+        
+        # Comprobamos si hay algún dato que no tenga 6 dígitos
+        ## guardo dato en la lista
+        datos_invalidos = [dato for dato in datos if len(str(abs(int(dato)))) != 6]
+        
+        if datos_invalidos:
+            st.error("🚨 Error: Ingresaste coordenadas no válidas. Verifica e intenta nuevamente.")
         else:
-            print("Dato guardado.")
+            # Si todo está bien, calculamos
+            mi_dv = calculo_dv.dv_(coordenadas_x_pv, coordenadas_x_cb, coordenadas_y_pv, coordenadas_y_cb)
+            mi_dr = calculo_o_dr.dr_(coordenadas_x_dr, coordenadas_x_cb, coordenadas_y_dr, coordenadas_y_cb)
+            mi_av = ang_vigilancia_or_o(mi_dr, mi_dv)
+            mi_distancia = calculo_distancia(coordenadas_x_pv, coordenadas_x_cb, coordenadas_y_pv, coordenadas_y_cb)
+            
+            st.success("✅ ¡Datos procesados correctamente!")
+            st.write(f'**El ángulo de vigilancia es:** {round(mi_av)}')
+            st.write(f'**La distancia es:** {round(mi_distancia)}')
 
-    while True:
-        try:
-            ano = int(input("Ingresa el año corriente:"))
-            break
-        except ValueError:
-            print("Por favor, ingresa un valor valido.")
+
+# ---------------------------------------------------------
+# OPCIÓN 2: ORIENTACIÓN
+# ---------------------------------------------------------
+elif seleccion_de_calculo == 'Orientación':
+    
+    with st.form("form_orientacion"):
+        st.subheader("Datos de la Carta")
+        ano_carta = st.number_input("Año de creación de la carta:", step=1, format="%d", value=1980)
+        ano = st.number_input("Año corriente:", step=1, format="%d", value=2026, min_value=2026)
+        var_anual = st.number_input("Variación anual (ej. 0.5):", format="%.2f", value=0.0)
+        dias_hoy = st.number_input("Cantidad de días hasta la fecha:", step=1, format="%d", min_value=0, value=1)
+        angulo_declinacion = st.number_input("Ángulo de declinación que indica la carta:", format="%.2f", value=0.0)
+        
+        st.write("---")
+        st.subheader("Ingreso de Coordenadas")
+        st.info("Todas las coordenadas deben contener 6 dígitos.")
+        
+        coordenadas_x_pv = st.number_input("Coordenadas de X en PV:", step=1, format="%d", value=0)
+        coordenadas_y_pv = st.number_input("Coordenadas de Y en PV:", step=1, format="%d", value=0)
+        coordenadas_x_cb = st.number_input("Coordenadas de X en CB:", step=1, format="%d", value=0)
+        coordenadas_y_cb = st.number_input("Coordenadas de Y en CB:", step=1, format="%d", value=0)
+        
+        submit_btn = st.form_submit_button("Enviar datos")
+        
+    if submit_btn:
+        datos_coord = [coordenadas_x_pv, coordenadas_y_pv, coordenadas_x_cb, coordenadas_y_cb]
+        datos_invalidos = [dato for dato in datos_coord if len(str(abs(int(dato)))) != 6]
+        
+        if datos_invalidos:
+            st.error("🚨 Error: Ingresaste coordenadas no válidas. Verifica e intenta nuevamente.")
         else:
-            print("Dato guardado.")
-
-    while True:    
-        try:
-            var_anual = float(input("Ingresa la variación anual:"))
-            break
-        except ValueError:
-            print("Por favor, ingresa un valor valido.")
-        else:
-            print("Dato guardado.")
-
-    while True:
-        try:
-            dias_hoy = int(input("Ingresa la cantidad de dias hasta la fecha:"))
-            break
-        except ValueError:
-            print("Por favor, ingresa un valor valido.")
-        else:
-            print("Dato guardado.")
-
-    while True:
-        try:
-            angulo_declinacion = float(input("Ingresa el angulo de declinacion que indica la carta:"))
-            break
-        except ValueError:
-            print("Por favor, ingresa un valor valido.")
-        else:
-            print("Dato guardado.")
-
-            #Coordenadas X PV
-    while True:
-        try:
-            coordenadas_x_pv_str = input("Ingresa las coordenadas de X en PV:")
-            if len(coordenadas_x_pv_str) != 6:
-                print("Dato no valido. Recuerda que las coordenadas deben ser números y tener 6 digitos.")
-            else:
-                coordenadas_x_pv = int(coordenadas_x_pv_str)
-                print("Dato guardado.")
-                break
-        except ValueError:
-            print("Por favor, ingresa un valor valido.")
-
-    #Coordenadas Y PV        
-    while True:
-        try:
-            coordenadas_y_pv_str = input("Ingresa las coordenadas de Y en PV:")
-            if len(coordenadas_y_pv_str) != 6:
-                print("Dato no valido. Recuerda que las coordenadas deben ser números y tener 6 digitos.")
-            else:
-                coordenadas_y_pv = int(coordenadas_y_pv_str)
-                print("Dato guardado.")
-                break
-        except ValueError:
-            print("Por favor, ingresa un valor valido.")
-
-    #coordenadas X CB 
-    while True:
-        try:
-            coordenadas_x_cb_str = input("Ingresa las coordenadas de X en CB:")
-            if len(coordenadas_x_cb_str) != 6:
-                print("Dato no valido. Recuerda que las coordenadas deben ser números y tener 6 digitos.")
-            else:
-                coordenadas_x_cb = int(coordenadas_x_cb_str)
-                print("Dato guardado.")
-                break
-        except ValueError:
-            print("Por favor, ingresa un valor valido.")
-
-    #coordenadas Y CB 
-    while True:
-        try:
-            coordenadas_y_cb_str = input("Ingresa las coordenadas de Y en CB:")
-            if len(coordenadas_y_cb_str) != 6:
-                print("Dato no valido. Recuerda que las coordenadas deben ser números y tener 6 digitos.")
-            else:
-                coordenadas_y_cb = int(coordenadas_y_cb_str)
-                print("Dato guardado.")
-                break
-        except ValueError:
-            print("Por favor, ingresa un valor valido.")
-
-    #importamos funcion para registrar coordenadas pv, datos carta y datos actuales
-
-    #importamos funcion de calculo por orientacion
-    mi_dv = calculo_dv.dv_(coordenadas_x_pv,coordenadas_x_cb, coordenadas_y_pv, coordenadas_y_cb)
-    mi_dd = calculo_dd.mi_dd(ano, ano_carta, dias_hoy, var_anual, angulo_declinacion)
-    mi_orientacion = ang_vigilancia_or_o(mi_dd, mi_dv)
-    print(f'La DD es: {mi_dd}') 
-    print(f'La DV es: {round(mi_dv)}') 
-    print(f'La Orientación es: {round(mi_orientacion)}') 
-else:
-    print("Por favor, verifica haber escrito correctamente el metodo por el cual deseas apuntar.")
+            mi_dv = calculo_dv.dv_(coordenadas_x_pv, coordenadas_x_cb, coordenadas_y_pv, coordenadas_y_cb)
+            mi_dd = calculo_dd.mi_dd(ano, ano_carta, dias_hoy, var_anual, angulo_declinacion)
+            mi_orientacion = ang_vigilancia_or_o(mi_dd, mi_dv)
+            
+            st.success("✅ ¡Datos procesados correctamente!")
+            st.write(f'**La DD es:** {mi_dd}') 
+            st.write(f'**La DV es:** {round(mi_dv)}') 
+            st.write(f'**La Orientación es:** {round(mi_orientacion)}')
