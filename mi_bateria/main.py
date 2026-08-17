@@ -83,20 +83,32 @@ elif seleccion_de_calculo == 'Orientación':
     
     with st.form("form_orientacion"):
         st.subheader("Datos de la Carta")
-        ano_carta = st.number_input("Año de creación de la carta:", step=1, format="%d", value=1980)
-        ano = st.number_input("Año corriente:", step=1, format="%d", value=2026, min_value=2026)
-        var_anual = st.number_input("Variación anual (ej. 0.5):", format="%.2f", value=0.0)
-        dias_hoy = st.number_input("Cantidad de días hasta la fecha:", step=1, format="%d", min_value=0, value=1)
-        angulo_declinacion = st.number_input("Ángulo de declinación que indica la carta:", format="%.2f", value=0.0)
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            ano_carta = st.number_input("Año de creación de la carta:", step=1, format="%d", value=1980)
+        with col2:
+            ano = st.number_input("Año corriente:", step=1, format="%d", value=2026, min_value=2026)
+        col3, col4 = st.columns(2)
+        with col3:
+            var_anual = st.number_input("Variación anual (ej. 0.5):", format="%.2f", value=0.0)
+        with col4:
+            dias_hoy = st.number_input("Cantidad de días hasta la fecha:", step=1, format="%d", min_value=0, value=1)
+            angulo_declinacion = st.number_input("Ángulo de declinación que indica la carta:", format="%.2f", value=0.0)
         
         st.write("---")
         st.subheader("Ingreso de Coordenadas")
         st.info("Todas las coordenadas deben contener 6 dígitos.")
         
-        coordenadas_x_pv = st.number_input("Coordenadas de X en PV:", step=1, format="%d", value=0)
-        coordenadas_y_pv = st.number_input("Coordenadas de Y en PV:", step=1, format="%d", value=0)
-        coordenadas_x_cb = st.number_input("Coordenadas de X en CB:", step=1, format="%d", value=0)
-        coordenadas_y_cb = st.number_input("Coordenadas de Y en CB:", step=1, format="%d", value=0)
+        col5, col6 = st.columns(2)
+        with col5:
+            coordenadas_x_pv = st.number_input("Coordenadas de X en PV:", step=1, format="%d", value=0)
+        with col6:
+            coordenadas_y_pv = st.number_input("Coordenadas de Y en PV:", step=1, format="%d", value=0)
+        col7, col8 = st.columns(2)
+        with col7:
+            coordenadas_x_cb = st.number_input("Coordenadas de X en CB:", step=1, format="%d", value=0)
+        with col8:
+            coordenadas_y_cb = st.number_input("Coordenadas de Y en CB:", step=1, format="%d", value=0)
         
         submit_btn = st.form_submit_button("Enviar datos")
         
