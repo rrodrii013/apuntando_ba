@@ -88,11 +88,12 @@ elif seleccion_de_calculo == 'Orientación':
             ano_carta = st.number_input("Año de creación de la carta:", step=1, format="%d", value=1980)
         with col2:
             ano = st.number_input("Año corriente:", step=1, format="%d", value=2026, min_value=2026)
-        col3, col4 = st.columns(2)
         with col3:
             var_anual = st.number_input("Variación anual (ej. 0.5):", format="%.2f", value=0.0)
+        col4, col5 = st.columns(2)
         with col4:
             dias_hoy = st.number_input("Cantidad de días hasta la fecha:", step=1, format="%d", min_value=0, value=1)
+        with col5:
             angulo_declinacion = st.number_input("Ángulo de declinación que indica la carta:", format="%.2f", value=0.0)
         
         st.write("---")
