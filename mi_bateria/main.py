@@ -57,6 +57,9 @@ if seleccion_de_calculo == 'Ángulo de vigilancia':
             mi_distancia = calculo_distancia(coordenadas_x_pv, coordenadas_x_cb, coordenadas_y_pv, coordenadas_y_cb)
             
             st.success("✅ ¡Datos procesados correctamente!")
+            
+            st.write(f'**La orientación de la DR es:** {round(mi_dr)}')
+            st.write(f'**La orientación de la DV es:** {round(mi_dv)}')
             st.write(f'**El ángulo de vigilancia es:** {round(mi_av)}')
             st.write(f'**La distancia es:** {round(mi_distancia)}')
 
@@ -100,3 +103,5 @@ elif seleccion_de_calculo == 'Orientación':
             st.write(f'**La DD es:** {mi_dd}') 
             st.write(f'**La DV es:** {round(mi_dv)}') 
             st.write(f'**La Orientación es:** {round(mi_orientacion)}')
+
+            st.title("© 2026 Alf. Mateo Rodríguez ")
