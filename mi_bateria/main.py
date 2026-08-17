@@ -28,12 +28,24 @@ if seleccion_de_calculo == 'Ángulo de vigilancia':
         st.info("Todas las coordenadas deben contener 6 dígitos.")
         
         # format="%d" para que el número se vea como entero y sin comas
-        coordenadas_x_pv = st.number_input("Coordenadas de X en PV:", step=1, format="%d", value=0)
-        coordenadas_y_pv = st.number_input("Coordenadas de Y en PV:", step=1, format="%d", value=0)
-        coordenadas_x_cb = st.number_input("Coordenadas de X en CB:", step=1, format="%d", value=0)
-        coordenadas_y_cb = st.number_input("Coordenadas de Y en CB:", step=1, format="%d", value=0)
-        coordenadas_x_dr = st.number_input("Coordenadas de X en DR:", step=1, format="%d", value=0)
-        coordenadas_y_dr = st.number_input("Coordenadas de Y en DR:", step=1, format="%d", value=0)
+        col1, col2 = st.columns(2)
+        with col1:
+            coordenadas_x_pv = st.number_input("Coordenadas de X en PV:", step=1, format="%d", value=0)
+
+        with col2:
+            coordenadas_y_pv = st.number_input("Coordenadas de Y en PV:", step=1, format="%d", value=0)
+
+        col3, col4 = st.columns(2)
+        with col3:
+            coordenadas_x_cb = st.number_input("Coordenadas de X en CB:", step=1, format="%d", value=0)
+        with col4:
+            coordenadas_y_cb = st.number_input("Coordenadas de Y en CB:", step=1, format="%d", value=0)
+
+        col5, col6 = st.columns(2)
+        with col5:
+            coordenadas_x_dr = st.number_input("Coordenadas de X en DR:", step=1, format="%d", value=0)
+        with col6:
+            coordenadas_y_dr = st.number_input("Coordenadas de Y en DR:", step=1, format="%d", value=0)
         
         # Btn para enviar el formulario
         submit_btn = st.form_submit_button("Enviar datos")
