@@ -104,4 +104,9 @@ elif seleccion_de_calculo == 'Orientación':
             st.write(f'**La DV es:** {round(mi_dv)}') 
             st.write(f'**La Orientación es:** {round(mi_orientacion)}')
 
-            st.title("© 2026 Alf. Mateo Rodríguez ")
+st.title("") 
+with st.bottom:
+    st.markdown(
+        "<p style='text-align: center;'>© 2026 Alf. Mateo Rodríguez.</p>", 
+        unsafe_allow_html=True
+    )    
