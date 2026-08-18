@@ -10,7 +10,7 @@ from logic.functions import calculo_distancia
 col_img, col_titulo = st.columns([1, 4])
 
 with col_img:
-    st.image("assets/img_poster.png", width=80) 
+    st.image("mi_bateria/assets/img_poster.png", width=80) 
 
 with col_titulo:
     st.title('Apuntando tu Batería 💣')
