@@ -7,7 +7,8 @@ import logic.calculo_o_dr as calculo_o_dr
 from logic.functions import ang_vigilancia_or_o 
 from logic.functions import calculo_distancia 
 
-st.title('Apuntando tu Batería 💣')
+st.title('Apuntando tu Batería 💣') 
+st.image('/Users/mateorodriguez/Library/CloudStorage/OneDrive-Personal/Proyectos code/Apuntando Ba/mi_bateria/assets/img_poster.png')
 
 # user selecciona el método de puntería deseado
 seleccion_de_calculo = st.selectbox(
