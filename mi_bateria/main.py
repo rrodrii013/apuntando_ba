@@ -7,10 +7,10 @@ import logic.calculo_o_dr as calculo_o_dr
 from logic.functions import ang_vigilancia_or_o 
 from logic.functions import calculo_distancia 
 
-col_img, col_titulo = st.columns([1, 4])
+col_img, col_titulo = st.columns([1.5, 4])
 
 with col_img:
-    st.image("mi_bateria/assets/img_poster.png", width=80) 
+    st.image("assets/img_poster.png", width=150) 
 
 with col_titulo:
     st.title('Apuntando tu Batería 💣')
